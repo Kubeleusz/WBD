@@ -6,11 +6,13 @@
 package wbdapplication;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -26,14 +28,14 @@ public class Employee
     private String eMailAdress;
     private String bankAccountNumber;
 
-    //Wyświetla całą zawartość tabeli Pracownik
+    //Zwraca całą zawartość tabeli Pracownik
     public ObservableList<Employee> getAll(Connection connection)
     {
         ObservableList<Employee> employeeList = FXCollections.observableArrayList();
         
-        String sqlCommand = "SELECT ID_Pracownik, ID_Punkt_Sprzedazy, Imie, "
-                + "Nazwisko, Numer_telefonu, Adres_e-mail, Numer_konta_bankowego"
-                + "FROM Pracownik ORDER BY ID_Pracownik";
+        String sqlCommand = "SELECT \"ID_Pracownik\", \"ID_Punkt_Sprzedazy\", \"Imie\", "
+                + "\"Nazwisko\", \"Numer_telefonu\", \"Adre_e-mail\", \"Numer_konta_bankowego\" "
+                + "FROM \"Pracownicy\" ORDER BY \"ID_Pracownik\"";
         
         Statement s;
         ResultSet rS;
@@ -47,14 +49,66 @@ public class Employee
             {
                 Employee employee = new Employee();
                 employee.employeeId = rS.getInt(1);
-                
+                employee.salePointId = rS.getInt(2);
+                employee.name = rS.getString(3);
+                employee.surname = rS.getString(4);
+                employee.phoneNumber = rS.getString(5);
+                employee.eMailAdress = rS.getString(6);
+                employee.bankAccountNumber = rS.getString(7);
+                employeeList.add(employee);
             }
         }
         catch(SQLException e)
         {
-            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error with data access");
+            alert.setContentText("Details: " + e.getMessage());
+            alert.showAndWait();
         }
+        return employeeList;     
+    }
+    
+    public ObservableList<Employee> getRestrictedList(Connection connection, String word)
+    {
+        ObservableList<Employee> employeeList = FXCollections.observableArrayList();
+        String sqlCommand = "SELECT \"ID_Pracownik\", \"ID_Punkt_Sprzedazy\", \"Imie\", "
+                + "\"Nazwisko\", \"Numer_telefonu\", \"Adre_e-mail\", \"Numer_konta_bankowego\" "
+                + "FROM \"Pracownicy\" WHERE upper(\"Imie\") LIKE ? OR "
+                + "upper(\"Nazwisko\") LIKE ? "
+                + "ORDER BY \"ID_Pracownik\"";
+        
+        PreparedStatement pS;
+        ResultSet rS;
+        
+        try
+        {
+            pS = connection.prepareStatement(sqlCommand);
+            pS.setString(1, word.toUpperCase() + "%");
+            pS.setString(2, word.toUpperCase() + "%");
             
+            rS = pS.executeQuery();
+            
+            while(rS.next())
+            {
+                Employee employee = new Employee();
+                employee.employeeId = rS.getInt(1);
+                employee.salePointId = rS.getInt(2);
+                employee.name = rS.getString(3);
+                employee.surname = rS.getString(4);
+                employee.phoneNumber = rS.getString(5);
+                employee.eMailAdress = rS.getString(6);
+                employee.bankAccountNumber = rS.getString(7);
+                employeeList.add(employee);
+            }
+        }
+        catch(SQLException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error with data access");
+            alert.setContentText("Details: " + e.getMessage());
+            alert.showAndWait();
+        }
+        return employeeList;
     }
     
     //Getters and Setters
@@ -98,7 +152,7 @@ public class Employee
         this.phoneNumber = phoneNumber;
     }
 
-    public String geteMailAdress() {
+    public String geteMail() {
         return eMailAdress;
     }
 

@@ -7,19 +7,25 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="348.0" prefWidth="644.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="wbdapplication.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="348.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wbdapplication.FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TableView layoutX="40.0" layoutY="70.0" prefHeight="208.0" prefWidth="342.0">
+      <TableView fx:id="employeeTable" layoutX="40.0" layoutY="70.0" prefHeight="208.0" prefWidth="647.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="tableColumnEmployeeId" prefWidth="75.0" text="Employee ID" />
+          <TableColumn fx:id="tableColumnSalePointId" prefWidth="92.800048828125" text="Sale Point ID" />
+            <TableColumn fx:id="tableColumnName" prefWidth="62.39997863769531" text="Name" />
+            <TableColumn fx:id="tableColumnSurname" prefWidth="70.4000244140625" text="Surname" />
+            <TableColumn fx:id="tableColumnPhoneNumber" prefWidth="97.5999755859375" text="Phone Number" />
+            <TableColumn fx:id="tableColumnEMailAdress" prefWidth="103.20001220703125" text="e-Mail adress" />
+            <TableColumn fx:id="tableColumnBankAccountNumber" prefWidth="136.80001220703127" text="Bank Account Number" />
         </columns>
       </TableView>
-      <TextField layoutX="40.0" layoutY="36.0" />
-      <Button layoutX="211.0" layoutY="36.0" mnemonicParsing="false" text="Search" />
-      <Button layoutX="40.0" layoutY="296.0" mnemonicParsing="false" text="Add" />
-      <Button layoutX="114.0" layoutY="296.0" mnemonicParsing="false" text="Delete" />
-      <Button layoutX="196.0" layoutY="296.0" mnemonicParsing="false" text="Update" />
+      <TextField fx:id="textField" layoutX="40.0" layoutY="36.0" />
+      <Button fx:id="searchButton" layoutX="211.0" layoutY="36.0" mnemonicParsing="false" onAction="#buttonSearchOnAction" text="Search" />
+      <Button fx:id="addButton" layoutX="40.0" layoutY="296.0" mnemonicParsing="false" text="Add" />
+      <Button fx:id="deleteButton" layoutX="114.0" layoutY="296.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="updateButton" layoutX="196.0" layoutY="296.0" mnemonicParsing="false" text="Update" />
+      <Label layoutX="40.0" layoutY="14.0" text="Search by name or surname" />
     </children>
 </AnchorPane>
