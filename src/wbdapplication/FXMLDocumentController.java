@@ -73,18 +73,15 @@ public class FXMLDocumentController implements Initializable
     private ObservableList<Employee> employeeList = FXCollections.observableArrayList();
 
     public void buttonSearchOnAction(ActionEvent action)
-    {
-        //connection = DBConnection.getConnection();
-        
+    {   
         employeeList = new Employee().getRestrictedList(connection, textField.getText().trim());
         
         setTableVievEmployee(employeeList);
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) 
-    {
-        connection = DBConnection.getConnection();
-        
+    {   
+        connection = DBConnection.getEstablishedConnection();
         employeeList = employee.getAll(connection);
         setTableVievEmployee(employeeList);
     }    
