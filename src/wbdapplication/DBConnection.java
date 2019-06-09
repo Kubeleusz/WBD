@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package wbdapplication;
 
 import java.sql.Connection;
@@ -10,10 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javafx.scene.control.Alert;
 
-/**
- *
- * @author Saelic
- */
 public class DBConnection 
 {
     private static Connection connection;
@@ -27,9 +18,6 @@ public class DBConnection
         try
         {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            Alert alert = new Alert((Alert.AlertType.INFORMATION));
-            alert.setContentText("You have been succesfully connected to database.");
-            alert.show();    
         }
         catch( SQLException e )
         {

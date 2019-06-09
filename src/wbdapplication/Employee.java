@@ -13,6 +13,7 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  *
@@ -111,6 +112,64 @@ public class Employee
         return employeeList;
     }
     
+    //Dodaje rekord
+    public int addEmployee(Connection connection, Integer employeeId, Integer salePointId, Integer positionId, Integer remunerationId,
+                             String name, String surname, String phoneNumber, String eMail, String bankAccountNumber)
+    {
+        String sqlCommand = "INSERT INTO \"Pracownicy\" VALUES (?,?,?,?,?,?,?,?,?)";
+        PreparedStatement pS;
+        Integer res = 0;
+        
+        try
+        {
+            pS = connection.prepareStatement(sqlCommand);
+            pS.setInt(1, employeeId);
+            pS.setInt(2, salePointId);
+            pS.setInt(3, positionId);
+            pS.setInt(4, remunerationId);
+            pS.setString(5, name);
+            pS.setString(6, surname);
+            pS.setString(7, phoneNumber);
+            pS.setString(8, eMail);
+            pS.setString(9, bankAccountNumber);
+            
+            res = pS.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error with data insert");
+            alert.setContentText("Details: " + e.getMessage());
+            alert.showAndWait();
+        } 
+        return res;
+    }
+    
+    //Usuwa rekord
+    public int removeEmployee(Connection connection, int employeeId)
+    {
+        String sqlCommand = "DELETE FROM \"Pracownicy\" WHERE \"ID_Pracownik\" = ?";
+        PreparedStatement pS;
+        Integer res = 0;
+        
+        try
+        {
+            pS = connection.prepareStatement(sqlCommand);
+            pS.setInt(1, employeeId);
+            
+            res = pS.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error during deleting record");
+            alert.setContentText("Details: " + e.getMessage());
+            alert.showAndWait();
+        }
+        
+        return res;
+    }
+    
     //Getters and Setters
     public int getEmployeeId() {
         return employeeId;
@@ -167,6 +226,4 @@ public class Employee
     public void setBankAccountNumber(String bankAccountNumber) {
         this.bankAccountNumber = bankAccountNumber;
     }
-    
-    
 }
