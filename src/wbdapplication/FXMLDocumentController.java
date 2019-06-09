@@ -73,6 +73,7 @@ public class FXMLDocumentController implements Initializable
     Employee employee = new Employee();
     private ObservableList<Employee> employeeList = FXCollections.observableArrayList();
 
+
     
     //Definiuje zachowanie przycisku Add
     public void buttonAddOnAction(ActionEvent action) throws Exception
@@ -124,6 +125,7 @@ public class FXMLDocumentController implements Initializable
         setTableVievEmployee(employeeList);
     }
     
+
     public void buttonSearchOnAction(ActionEvent action)
     {   
         employeeList = new Employee().getRestrictedList(connection, textField.getText().trim());
@@ -133,9 +135,8 @@ public class FXMLDocumentController implements Initializable
     
     @Override
     public void initialize(URL url, ResourceBundle rb) 
-    {
-        connection = DBConnection.getConnection();
-        
+    {   
+        connection = DBConnection.getEstablishedConnection();
         employeeList = employee.getAll(connection);
         setTableVievEmployee(employeeList);
     }    

@@ -10,7 +10,7 @@
 <AnchorPane id="AnchorPane" prefHeight="348.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wbdapplication.FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TableView fx:id="employeeTable" layoutX="40.0" layoutY="70.0" prefHeight="208.0" prefWidth="647.0">
+      <TableView fx:id="employeeTable" layoutX="40.0" layoutY="70.0" prefHeight="217.0" prefWidth="639.0">
         <columns>
           <TableColumn fx:id="tableColumnEmployeeId" prefWidth="75.0" text="Employee ID" />
           <TableColumn fx:id="tableColumnSalePointId" prefWidth="92.800048828125" text="Sale Point ID" />
@@ -23,8 +23,8 @@
       </TableView>
       <TextField fx:id="textField" layoutX="40.0" layoutY="36.0" />
       <Button fx:id="searchButton" layoutX="211.0" layoutY="36.0" mnemonicParsing="false" onAction="#buttonSearchOnAction" text="Search" />
-      <Button fx:id="addButton" layoutX="40.0" layoutY="296.0" mnemonicParsing="false" text="Add" />
-      <Button fx:id="deleteButton" layoutX="114.0" layoutY="296.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="addButton" layoutX="40.0" layoutY="296.0" mnemonicParsing="false" onAction="#buttonAddOnAction" text="Add" />
+      <Button fx:id="deleteButton" layoutX="114.0" layoutY="296.0" mnemonicParsing="false" onAction="#buttonDeleteOnAction" text="Delete" />
       <Button fx:id="updateButton" layoutX="196.0" layoutY="296.0" mnemonicParsing="false" text="Update" />
       <Label layoutX="40.0" layoutY="14.0" text="Search by name or surname" />
     </children>

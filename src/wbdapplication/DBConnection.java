@@ -21,12 +21,16 @@ public class DBConnection
         }
         catch( SQLException e )
         {
-            Alert alert = new Alert((Alert.AlertType.ERROR));
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Connection error");
             alert.setContentText("Details: " + e.getMessage());
             alert.show();
         }
         
+        return connection;
+    }
+    
+    public static Connection getEstablishedConnection(){
         return connection;
     }
 }

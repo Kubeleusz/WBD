@@ -6,22 +6,36 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class WBDApplication extends Application 
-{
+/**
+ *
+ * @author Saelic
+ */
+public class WBDApplication extends Application {
+    private static boolean permission = false;
+    private static Stage stage;
     
     @Override
-    public void start(Stage stage) throws Exception 
-    {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+    public void start(Stage stag) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/login/FXMLLogin.fxml"));
         
+        stage = stag;
         Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
+        stag.setResizable(false);
+        stag.setScene(scene);
+        stag.show();
     }
 
     public static void main(String[] args) 
     {
         launch(args);
     }
+    
+    public static void setPermission(boolean perm){
+        permission = perm;
+    }
+    
+    public static Stage getStage(){
+        return stage;
+    }
+
 }
