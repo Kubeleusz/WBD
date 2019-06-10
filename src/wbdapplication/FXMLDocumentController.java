@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 
 public class FXMLDocumentController implements Initializable 
 {
-    @FXML
+     @FXML
     private Label label;
 
     @FXML
@@ -35,22 +35,19 @@ public class FXMLDocumentController implements Initializable
     private TableColumn<Employee, Integer> tableColumnEmployeeId;
 
     @FXML
-    private TableColumn<Employee, Integer> tableColumnSalePointId;
+    private TableColumn<Employee, Integer> tableColumnName;
 
     @FXML
-    private TableColumn<Employee, String> tableColumnName;
+    private TableColumn<Employee, Integer> tableColumnSurname;
 
     @FXML
-    private TableColumn<Employee, String> tableColumnSurname;
+    private TableColumn<Employee, Integer> tableColumnPhoneNumber;
 
     @FXML
-    private TableColumn<Employee, String> tableColumnPhoneNumber;
+    private TableColumn<Employee, Integer> tableColumnEMailAdress;
 
     @FXML
-    private TableColumn<Employee, String> tableColumnEMailAdress;
-
-    @FXML
-    private TableColumn<Employee, String> tableColumnBankAccountNumber;
+    private TableColumn<Employee, Integer> tableColumnBankAccountNumber;
 
     @FXML
     private TextField textField;
@@ -68,10 +65,10 @@ public class FXMLDocumentController implements Initializable
     private Button updateButton;
     
     
-    
     private Connection connection;
     Employee employee = new Employee();
     private ObservableList<Employee> employeeList = FXCollections.observableArrayList();
+    public static int employeeId;
 
 
     
@@ -101,7 +98,7 @@ public class FXMLDocumentController implements Initializable
             alert1.showAndWait();
         }
         
-        Integer employeeId = employeeTable.getSelectionModel().getSelectedItem().getEmployeeId();
+        employeeId = employeeTable.getSelectionModel().getSelectedItem().getEmployeeId();
         
         Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
         alert2.setTitle("Confirmation");
@@ -114,13 +111,39 @@ public class FXMLDocumentController implements Initializable
             
             if(result > 0)
             {
-                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                 alert1.setContentText("Record has been removed.");
                 alert1.showAndWait();
             }
         }
         
         //Autoodświeżanie listy pracowników
+        employeeList = new Employee().getRestrictedList(connection, "");
+        setTableVievEmployee(employeeList);
+    }
+    
+    //Wywołuje okienko aktualizacji rekordu
+    public void buttonUpdateOnAction(ActionEvent action) throws Exception
+    {
+        Integer rowIndex = employeeTable.getSelectionModel().getSelectedIndex();
+        
+        if(rowIndex < -1)
+        {
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setContentText("There is no proper record selected!");
+            alert1.showAndWait();
+            return;
+        }
+        
+        employeeId = employeeTable.getSelectionModel().getSelectedItem().getEmployeeId();
+        
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/update/FXMLUpdate.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Update employee");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+        
         employeeList = new Employee().getRestrictedList(connection, "");
         setTableVievEmployee(employeeList);
     }
@@ -144,7 +167,6 @@ public class FXMLDocumentController implements Initializable
     private void setTableVievEmployee(ObservableList<Employee> eL)
     {
         tableColumnEmployeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
-        tableColumnSalePointId.setCellValueFactory(new PropertyValueFactory<>("salePointId"));
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableColumnSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         tableColumnPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));

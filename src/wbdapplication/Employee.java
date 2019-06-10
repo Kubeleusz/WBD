@@ -19,6 +19,8 @@ public class Employee
     private String phoneNumber;
     private String eMailAdress;
     private String bankAccountNumber;
+    
+    ObservableList<Employee> employeeList = FXCollections.observableArrayList();
 
     //Zwraca całą zawartość tabeli Pracownik
     public ObservableList<Employee> getAll(Connection connection)
@@ -62,7 +64,6 @@ public class Employee
     
     public ObservableList<Employee> getRestrictedList(Connection connection, String word)
     {
-        ObservableList<Employee> employeeList = FXCollections.observableArrayList();
         String sqlCommand = "SELECT \"ID_Pracownik\", \"ID_Punkt_Sprzedazy\", \"Imie\", "
                 + "\"Nazwisko\", \"Numer_telefonu\", \"Adre_e-mail\", \"Numer_konta_bankowego\" "
                 + "FROM \"Pracownicy\" WHERE upper(\"Imie\") LIKE ? OR "
@@ -159,6 +160,42 @@ public class Employee
         }
         
         return res;
+    }
+    
+    public int updateEmployee(Connection connection, Integer employeeId, String command)
+    {
+        String sqlCommand = "UPDATE \"Pracownicy\" SET " + command + " WHERE \"ID_Pracownik\" = ?";
+        
+        PreparedStatement pS;
+        Integer res = 0;
+        
+        try
+        {
+            pS = connection.prepareStatement(sqlCommand);
+            pS.setInt(1, employeeId);
+            
+            res = pS.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error during updating record");
+            alert.setContentText("Details: " + e.getMessage());
+            alert.showAndWait();
+        }
+        
+        return res;
+    }
+    
+    public static int getMaxEmployeeId(ObservableList<Employee> list)
+    {
+        int temp = 0;
+        for(Employee e : list)
+        {
+            if(e.getEmployeeId() > temp)
+                temp = e.getEmployeeId();
+        }
+        return temp + 1;
     }
     
     //Getters and Setters

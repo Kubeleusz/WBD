@@ -8,7 +8,7 @@
     <update check="always"/>
     <resources>
         <j2se version="10.0.2+" href="http://java.sun.com/products/autodl/j2se"/>
-        <jar href="WBDApplication.jar" size="132323" download="eager"/>
+        <jar href="WBDApplication.jar" size="135048" download="eager"/>
         <jar href="lib\ojdbc7.jar" size="3698857" download="eager"/>
     </resources>
     <jfx:javafx-desc width="800" height="600" main-class="wbdapplication.WBDApplication" name="WBDApplication"/>
