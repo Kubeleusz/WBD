@@ -215,7 +215,7 @@ public class Client {
             pS.setInt(1, clientId);
             pS.setString(2, name);
             pS.setString(3, surname);
-            pS.setString(4, IDNumber);
+            pS.setString(4, IDnumber);
             pS.setString(5, street);
             pS.setInt(6, homeNumber);
             pS.setString(7, post);

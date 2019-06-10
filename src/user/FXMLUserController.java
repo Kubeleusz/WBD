@@ -50,9 +50,12 @@ public class FXMLUserController implements Initializable {
         setTableVievClient(clientList);
     }    
     
+    public static Stage stage;
     private Connection connection;
     Client client = new Client();
     private ObservableList<Client> clientList = FXCollections.observableArrayList();
+    public static boolean add_status;
+    public static boolean edit_status;
     
       @FXML
     private MenuBar menu_bar;
@@ -139,9 +142,11 @@ public class FXMLUserController implements Initializable {
     //Definiuje zachowanie przycisku Add
     public void buttonAddOnAction(ActionEvent action) throws Exception
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(""));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/user/FXMLUserAdd.fxml"));
         Parent root = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
+        add_status = true;
+        edit_status = false;
+        stage = new Stage();
         stage.setTitle("Add new client");
         stage.setScene(new Scene(root));
         stage.showAndWait();
