@@ -25,7 +25,7 @@ public class Client {
     private String surname;
     private String IDNumber;
     private String street;
-    private int houseNumber;
+    private String houseNumber;
     private String postCode;
     private String city;
     private String email;
@@ -71,11 +71,11 @@ public class Client {
         this.street = street;
     }
 
-    public int getHouseNumber() {
+    public String getHouseNumber() {
         return houseNumber;
     }
 
-    public void setHouseNumber(int houseNumber) {
+    public void setHouseNumber(String houseNumber) {
         this.houseNumber = houseNumber;
     }
 
@@ -117,8 +117,8 @@ public class Client {
         ObservableList<Client> clients = FXCollections.observableArrayList();
         
         String sqlCommand = "SELECT \"ID_Klient\", \"Imie\", "
-                + "\"Nazwisko\", \"Numer_dowodu\", \"Ulica\", \"Numer_domu\", \"Kod_pocztowy\", \"Miasto\", \"Adres_e_mail\", \"Numer_telefonu\" "
-                + "FROM \"Kliecnci\" ORDER BY \"ID_Pracownik\"";
+                + "\"Nazwisko\", \"Numer_dowodu\", \"Ulica\", \"Numer_domu\", \"Kod_pocztowy\", \"Miasto\", \"Adres_e-mail\", \"Numer_telefonu\" "
+                + "FROM \"Klienci\" ORDER BY \"ID_Klient\"";
         
         Statement s;
         ResultSet rS;
@@ -136,7 +136,7 @@ public class Client {
                 client.surname = rS.getString(3);
                 client.IDNumber = rS.getString(4);
                 client.street = rS.getString(5);
-                client.houseNumber = rS.getInt(6);
+                client.houseNumber = rS.getString(6);
                 client.postCode = rS.getString(7);
                 client.city = rS.getString(8);
                 client.email = rS.getString(9);
@@ -182,7 +182,7 @@ public class Client {
                 client.surname = rS.getString(3);
                 client.IDNumber = rS.getString(4);
                 client.street = rS.getString(5);
-                client.houseNumber = rS.getInt(6);
+                client.houseNumber = rS.getString(6);
                 client.postCode = rS.getString(7);
                 client.city = rS.getString(8);
                 client.email = rS.getString(9);
@@ -202,7 +202,7 @@ public class Client {
     
     //Dodaje rekord
     public int addClient(Connection connection, Integer clientId,
-                             String name, String surname, String IDnumber, String street, int homeNumber, 
+                             String name, String surname, String IDnumber, String street, String homeNumber, 
                              String post, String city, String email, String phone)
     {
         String sqlCommand = "INSERT INTO \"Pracownicy\" VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -217,7 +217,7 @@ public class Client {
             pS.setString(3, surname);
             pS.setString(4, IDnumber);
             pS.setString(5, street);
-            pS.setInt(6, homeNumber);
+            pS.setString(6, homeNumber);
             pS.setString(7, post);
             pS.setString(8, city);
             pS.setString(9, email);

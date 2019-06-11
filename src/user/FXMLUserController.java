@@ -30,7 +30,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import wbdapplication.DBConnection;
-import wbdapplication.Employee;
 
 /**
  * FXML Controller class

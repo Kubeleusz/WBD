@@ -112,14 +112,14 @@ public class FXMLUserAddController implements Initializable {
         client.setSurname(client_surname_text.getText().trim());
         client.setIDNumber(client_ID_text.getText().trim());
         client.setStreet(client_street_text.getText().trim());
-        client.setHouseNumber(Integer.parseInt(client_house_text.getText().trim()));
+        client.setHouseNumber(client_house_text.getText().trim());
         client.setPostCode(client_post_code_text.getText().trim());
         client.setCity(client_city_text.getText().trim());
         client.setEmail(client_e_mail_text.getText().trim());
         client.setPhone(client_phone_text.getText().trim());
         
         if(client.getName().length() == 0 || client.getSurname().length()== 0 || client.getIDNumber().length() == 0
-                || client.getStreet().length() == 0 || client.getHouseNumber() == 0 || client.getPostCode().length() == 0 
+                || client.getStreet().length() == 0 || client.getHouseNumber().length() == 0 || client.getPostCode().length() == 0 
                 || client.getPostCode().length() == 0 || client.getCity().length() == 0)
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);

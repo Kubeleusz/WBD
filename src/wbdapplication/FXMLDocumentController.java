@@ -68,8 +68,9 @@ public class FXMLDocumentController implements Initializable
     private Connection connection;
     Employee employee = new Employee();
     private ObservableList<Employee> employeeList = FXCollections.observableArrayList();
+    
     public static int employeeId;
-
+    public static Employee e = new Employee();
 
     
     //Definiuje zachowanie przycisku Add
@@ -135,7 +136,12 @@ public class FXMLDocumentController implements Initializable
             return;
         }
         
-        employeeId = employeeTable.getSelectionModel().getSelectedItem().getEmployeeId();
+        e.setEmployeeId(employeeTable.getSelectionModel().getSelectedItem().getEmployeeId());
+        e.setName(employeeTable.getSelectionModel().getSelectedItem().getName());
+        e.setSurname(employeeTable.getSelectionModel().getSelectedItem().getSurname());
+        e.setPhoneNumber(employeeTable.getSelectionModel().getSelectedItem().getPhoneNumber());
+        e.seteMailAdress(employeeTable.getSelectionModel().getSelectedItem().geteMail());
+        e.setBankAccountNumber(employeeTable.getSelectionModel().getSelectedItem().getBankAccountNumber());
         
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/update/FXMLUpdate.fxml"));
         Parent root = (Parent) fxmlLoader.load();

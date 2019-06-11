@@ -37,12 +37,12 @@ public class FXMLAddController  {
     @FXML
     private Button cancelButton;
 
-    @FXML
-    private ChoiceBox<String> remunerationChoiceBox;
+    //@FXML
+    //private ChoiceBox<String> remunerationChoiceBox;
     
-    Remuneration remuneration = new Remuneration();
+    //Remuneration remuneration = new Remuneration();
     
-    private ObservableList<Remuneration> remunerationList = FXCollections.observableArrayList();
+    //private ObservableList<Remuneration> remunerationList = FXCollections.observableArrayList();
     
     private Connection connection;
     
@@ -96,8 +96,8 @@ public class FXMLAddController  {
     {
         connection = DBConnection.getConnection();
         
-        remunerationList = remuneration.getRemunerations(connection);
-        remunerationChoiceBox.setItems(Remuneration.getCashList(remunerationList));
+        //remunerationList = remuneration.getRemunerations(connection);
+        //remunerationChoiceBox.setItems(Remuneration.getCashList(remunerationList));
         
         employeeList = employee.getAll(connection);
     }

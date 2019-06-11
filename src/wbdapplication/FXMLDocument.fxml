@@ -17,7 +17,7 @@
             <TableColumn fx:id="tableColumnSurname" prefWidth="70.4000244140625" text="Surname" />
             <TableColumn fx:id="tableColumnPhoneNumber" prefWidth="97.5999755859375" text="Phone Number" />
             <TableColumn fx:id="tableColumnEMailAdress" prefWidth="103.20001220703125" text="e-Mail adress" />
-            <TableColumn fx:id="tableColumnBankAccountNumber" prefWidth="180.00006103515625" text="Bank Account Number" />
+            <TableColumn fx:id="tableColumnBankAccountNumber" prefWidth="226.39999389648438" text="Bank Account Number" />
         </columns>
       </TableView>
       <TextField fx:id="textField" layoutX="40.0" layoutY="36.0" />

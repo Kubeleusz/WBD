@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.FXMLUserController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="user.FXMLUserController">
    <children>
       <MenuBar fx:id="menu_bar" prefHeight="26.0" prefWidth="880.0">
         <menus>
@@ -50,7 +50,7 @@
             <Font name="Comic Sans MS" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="add_button" layoutX="383.0" layoutY="398.0" mnemonicParsing="false" onAction="#buttonAddOnAction" text="Add" />
+      <Button fx:id="add_button" layoutX="393.0" layoutY="398.0" mnemonicParsing="false" onAction="#buttonAddOnAction" text="Add" />
       <Label fx:id="add_label" layoutX="304.0" layoutY="359.0" text="Add element to database:" textFill="#0c31eb">
          <font>
             <Font name="Comic Sans MS" size="12.0" />

@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package login;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -114,7 +110,9 @@ public class FXMLLoginController implements Initializable{
                 }
                 else if(access.equals("user")){
                     wbdapplication.WBDApplication.setPermission(false);
-                    Parent root = FXMLLoader.load(getClass().getResource(""));
+                    System.out.println("tu 1");
+                    Parent root = FXMLLoader.load(getClass().getResource("/user/FXMLUser.fxml"));
+                    System.out.println("tu 2");
                     Stage stage = wbdapplication.WBDApplication.getStage();
                     stage.hide();
                     Scene scene = new Scene(root);

@@ -21,20 +21,40 @@ public class FXMLUpdateController implements Initializable {
 
     @FXML
     private Button updateButton;
+
+    @FXML
+    private TextField surnameTextField;
+
+    @FXML
+    private TextField phoneNumberTextField;
+
+    @FXML
+    private TextField eMailAddressTextField;
+
+    @FXML
+    private TextField bankAccountNumberTextField;
     
     private Connection connection;
     
+    int employeeId;
+    String name;
+    String surname;
+    String phoneNumber;
+    String eMailAddress;
+    String bankAccountNumber;
+    
     public void buttonUpdateOnAction(ActionEvent action)
     {
-        String name;
-        
         Integer result;
-        
-        int employeeId = wbdapplication.FXMLDocumentController.employeeId;
-
+    
         name = nameTextField.getText().trim();
+        surname = surnameTextField.getText().trim();
+        phoneNumber = phoneNumberTextField.getText().trim();
+        eMailAddress = eMailAddressTextField.getText().trim();
+        bankAccountNumber = bankAccountNumberTextField.getText().trim();
         
-        String command = "\"Imie\" = '" + name + "'";
+        String command = "\"Imie\" = '" + name + "', \"Nazwisko\" = '" + surname + "', \"Numer_telefonu\" = '" + phoneNumber + "', \"Adre_e-mail\" = '"
+                + eMailAddress + "', \"Numer_konta_bankowego\" = '" + bankAccountNumber + "'";
         
         if(name.length() == 0)
         {
@@ -65,6 +85,17 @@ public class FXMLUpdateController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        employeeId = wbdapplication.FXMLDocumentController.e.getEmployeeId();
+        name = wbdapplication.FXMLDocumentController.e.getName();
+        surname = wbdapplication.FXMLDocumentController.e.getSurname();
+        phoneNumber = wbdapplication.FXMLDocumentController.e.getPhoneNumber();
+        eMailAddress = wbdapplication.FXMLDocumentController.e.geteMail();
+        bankAccountNumber = wbdapplication.FXMLDocumentController.e.getBankAccountNumber();
         
+        nameTextField.setText(name);
+        surnameTextField.setText(surname);
+        phoneNumberTextField.setText(phoneNumber);
+        eMailAddressTextField.setText(eMailAddress);
+        bankAccountNumberTextField.setText(bankAccountNumber);
     }  
 }
